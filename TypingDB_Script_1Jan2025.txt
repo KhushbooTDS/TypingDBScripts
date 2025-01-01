@@ -1,0 +1,240 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema typingdb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema typingdb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `typingdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `typingdb` ;
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`course`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`course` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `CourseName` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`coursepractices`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`coursepractices` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `PracticeName` VARCHAR(200) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 9
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`coursesupload`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`coursesupload` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `CourseId` INT NULL DEFAULT NULL,
+  `SubjectId` INT NULL DEFAULT NULL,
+  `PracticeId` INT NULL DEFAULT NULL,
+  `PracticeData` VARCHAR(2000) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`gender`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`gender` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(200) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`hadicap`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`hadicap` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `HadicapName` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`identitydoc`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`identitydoc` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `DocName` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`institute`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`institute` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `InstituteName` VARCHAR(250) NOT NULL,
+  `PrincipalName` VARCHAR(250) NULL DEFAULT NULL,
+  `InstituteAddress` VARCHAR(1000) NULL DEFAULT NULL,
+  `InstituteCode` VARCHAR(200) NULL DEFAULT NULL,
+  `ContactNo` VARCHAR(20) NULL DEFAULT NULL,
+  `Email` VARCHAR(50) NULL DEFAULT NULL,
+  `NoOfComputer` INT NULL DEFAULT NULL,
+  `PrincipalPhotoUrl` VARCHAR(250) NULL DEFAULT NULL,
+  `InstituteSymbolUrl` VARCHAR(250) NULL DEFAULT NULL,
+  `Status` VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`instructor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`instructor` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `InstructorFirstName` VARCHAR(200) NULL DEFAULT NULL,
+  `LastName` VARCHAR(200) NULL DEFAULT NULL,
+  `FatherName` VARCHAR(200) NULL DEFAULT NULL,
+  `MotherName` VARCHAR(200) NULL DEFAULT NULL,
+  `MobileNo` VARCHAR(20) NULL DEFAULT NULL,
+  `Email` VARCHAR(50) NULL DEFAULT NULL,
+  `Gender` VARCHAR(10) NULL DEFAULT NULL,
+  `PermanentAddress` VARCHAR(500) NULL DEFAULT NULL,
+  `Education` VARCHAR(100) NULL DEFAULT NULL,
+  `Identity` VARCHAR(100) NULL DEFAULT NULL,
+  `IdentityNo` VARCHAR(100) NULL DEFAULT NULL,
+  `Pic` VARCHAR(100) NULL DEFAULT NULL,
+  `Status` VARCHAR(20) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`notices`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`notices` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `ToUserId` INT NULL DEFAULT NULL,
+  `NoticeText` VARCHAR(1000) NULL DEFAULT NULL,
+  `CreatedAt` DATETIME NULL DEFAULT NULL,
+  `CreatedBy` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`roles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`roles` (
+  `Id` INT NOT NULL,
+  `RoleName` VARCHAR(200) NOT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`students`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`students` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `LastName` VARCHAR(100) NULL DEFAULT NULL,
+  `FirstName` VARCHAR(100) NULL DEFAULT NULL,
+  `FatherName` VARCHAR(100) NULL DEFAULT NULL,
+  `MotherName` VARCHAR(100) NULL DEFAULT NULL,
+  `MobileNumber` VARCHAR(20) NULL DEFAULT NULL,
+  `EMailId` VARCHAR(50) NULL DEFAULT NULL,
+  `Gender` VARCHAR(10) NULL DEFAULT NULL,
+  `Handicap` VARCHAR(5) NULL DEFAULT NULL,
+  `PaermentAddress` VARCHAR(100) NULL DEFAULT NULL,
+  `School` VARCHAR(100) NULL DEFAULT NULL,
+  `Education` VARCHAR(100) NULL DEFAULT NULL,
+  `PhotoIdentityURL` VARCHAR(250) NULL DEFAULT NULL,
+  `OtherIdentityURL` VARCHAR(250) NULL DEFAULT NULL,
+  `IdentityNo` INT NULL DEFAULT NULL,
+  `DOB` VARCHAR(50) NULL DEFAULT NULL,
+  `DateAdd` VARCHAR(250) NULL DEFAULT NULL,
+  `SelectSub30wpm` VARCHAR(10) NULL DEFAULT NULL,
+  `SelectSub40wpm` VARCHAR(10) NULL DEFAULT NULL,
+  `Session` VARCHAR(50) NULL DEFAULT NULL,
+  `StudentPassword` VARCHAR(50) NULL DEFAULT NULL,
+  `StudentPicURL` VARCHAR(250) NULL DEFAULT NULL,
+  `IdentityPicURL` VARCHAR(250) NULL DEFAULT NULL,
+  `Status` VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`subject`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`subject` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `CourseiD` INT NOT NULL,
+  `SubjectName` VARCHAR(100) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `typingdb`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `typingdb`.`users` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Username` VARCHAR(200) NOT NULL,
+  `Password` VARCHAR(200) NOT NULL,
+  `IsActive` BIT(1) NULL DEFAULT NULL,
+  `RoleId` INT NULL DEFAULT NULL,
+  `Email` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
